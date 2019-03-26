@@ -40,7 +40,7 @@ const user = {
                 loginByUsername(username, userInfo.password).then(response => {
                     commit('SET_TOKEN', response.token);
                     setToken(response.token);
-                    resolve()
+                    resolve(response)
                 }).catch(error => {
                     reject(error)
                 })
@@ -64,7 +64,7 @@ const user = {
         },
 
         // 登出
-        LogOut({ commit, state }) {
+        Logout({ commit, state }) {
             return new Promise((resolve, reject) => {
                 logout(state.token).then(() => {
                     commit('SET_TOKEN', '');
@@ -73,15 +73,6 @@ const user = {
                 }).catch(error => {
                     reject(error)
                 })
-            })
-        },
-
-        // 前端 登出
-        FedLogOut({ commit }) {
-            return new Promise(resolve => {
-                commit('SET_TOKEN', '');
-                removeToken();
-                resolve()
             })
         }
     }

@@ -1,6 +1,7 @@
 import axios from 'axios'
-import store from '../store'
+import store from '../store/index'
 import { getToken } from "./auth";
+import { Modal } from 'ant-design-vue'
 
 // 创建axios实例
 const service = axios.create({
@@ -14,14 +15,13 @@ const service = axios.create({
 service.interceptors.request.use(
     config => {
         if (getToken()) {
-            config.headers['Stoken'] = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
+            config.headers.Authorization = getToken() // 让每个请求携带自定义token 请根据实际情况自行修改
         }
         return config
     },
     error => {
         // Do something with request error
-        console.log(error); // for debug
-        Promise.reject(error)
+        Promise.reject(error);
     }
 );
 
@@ -35,18 +35,20 @@ service.interceptors.response.use(
         if (res.code !== 200) {
             // 501,token验证出错
             if (res.code === 501) {
-                Modal.warning({
+                Modal.error({
                     title: '错误',
-                    content: '你已经登出，请重新登录'
-                }).then(() => {
-                    store.dispatch('FedLogOut').then(() => {
-                        location.reload() // 为了重新实例化vue-router对象 避免bug
-                    })
-                })
+                    content: '你已经登出，请重新登录',
+                    onOk() {
+                        console.log('OK');
+                        store.dispatch('FedLogOut').then(() => {
+                            location.reload() // 为了重新实例化vue-router对象 避免bug
+                        })
+                    }
+                });
             }
             return Promise.reject('error')
         } else {
-            return response.data
+            return Promise.resolve(res);
         }
     },
     error => {

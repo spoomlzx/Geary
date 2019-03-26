@@ -13,28 +13,32 @@ Vue.config.productionTip = false;
 Vue.use(AntDesignVue);
 
 import VueClipboards from 'vue-clipboards';
+
 Vue.use(VueClipboards);
 
 import uploader from 'vue-simple-uploader'
+
 Vue.use(uploader);
 
 Vue.use(vuescroll);
 Vue.prototype.$vuescrollConfig = {
-  vuescroll: {
-    mode: 'native'
-  },
-  scrollPanel: {
-    scrollingX: false,
-  },
-  bar: {
-    delayTime: 500,
-    onlyShowBarOnScroll: true,
-    background: "#cecece",
-  }
+    vuescroll: {
+        mode: 'native'
+    },
+    scrollPanel: {
+        scrollingX: false,
+    },
+    bar: {
+        delayTime: 500,
+        onlyShowBarOnScroll: true,
+        background: "#cecece",
+    }
 };
 
+require('./mock');
+
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app');

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import store from '../store/index'
 import { getToken } from "../utils/auth";
-import notification from 'ant-design-vue/es/notification';
+import { notification } from 'ant-design-vue'
 
 Vue.use(Router);
 
@@ -15,7 +15,7 @@ export const constRouter = [].concat(
 const router = new Router({
     routes: constRouter
 });
-const whiteList = ['login','register']; // 不重定向白名单
+const whiteList = ['login', 'register']; // 不重定向白名单
 router.beforeEach((to, from, next) => {
     if (!to.name) {
         next({ path: '/404' });
@@ -28,13 +28,13 @@ router.beforeEach((to, from, next) => {
             if (!store.getters.username) {
                 store.dispatch('GetUserInfo').then(res => { // 拉取用户信息
                     next()
-                }).catch((err) => {
-                    store.dispatch('FedLogOut').then(() => {
-                        notification.error({
-                            message: '错误',
-                            description: '请求用户信息失败，请重试'
-                        });
-                        next({ path: '/' })
+                }).catch(() => {
+                    notification.error({
+                        message: '错误',
+                        description: '请求用户信息失败，请重试'
+                    });
+                    store.dispatch('Logout').then(() => {
+                        next({ path: '/user/login' })
                     })
                 })
             } else {

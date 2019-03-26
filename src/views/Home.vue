@@ -1,18 +1,25 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div class="home">
+        <a-button @click="out">{{username}}</a-button>
+        <a-avatar shape="square" :size="128" :src="avatar"/>
+    </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+    import { mapGetters } from 'vuex';
 
-export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        name: 'home',
+        computed: {
+            ...mapGetters([
+                'avatar',
+                'username'
+            ])
+        },
+        methods: {
+            out() {
+                this.$store.dispatch('Logout').then(() => window.location.reload())
+            }
+        }
+    }
 </script>
