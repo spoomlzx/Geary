@@ -23,9 +23,9 @@ Mock.mock('/user/info', 'get', function () {
         code: 200,
         msg: 'success',
         user: {
-            username: 'spoomlzx',
+            username: Mock.Random.cname(),
             avatar: 'http://img4.nga.178.com/ngabbs/nga_classic/f/187.png',
-            email: 'spoomlzx@qq.com',
+            email: Mock.mock('@email'),
             mobile: '18588781024',
             status: 1
         }

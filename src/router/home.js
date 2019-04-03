@@ -5,7 +5,7 @@ export default [
         name: 'index',
         path: '/',
         component: () => import('../views/Home.vue'),
-        hidden: true
+        meta: { side: false }
     },
     {
         name: '404',
@@ -17,7 +17,7 @@ export default [
         name: 'user',
         path: '/user',
         component: UserLayout,
-        meta: { model: 'Login' },
+        meta: { model: 'Login', side: false },
         children: [
             {
                 path: 'login',

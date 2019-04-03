@@ -2,6 +2,7 @@
     <div class="home">
         <a-button @click="out">{{username}}</a-button>
         <a-avatar shape="square" :size="128" :src="avatar"/>
+        <a-button>{{email}}</a-button>
     </div>
 </template>
 
@@ -13,7 +14,8 @@
         computed: {
             ...mapGetters([
                 'avatar',
-                'username'
+                'username',
+                'email'
             ])
         },
         methods: {

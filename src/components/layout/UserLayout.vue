@@ -3,10 +3,10 @@
         <div class="container">
             <div class="top">
                 <div class="header">
-                    <a-badge :count="'Beta 2.0'">
+                    <a-badge :count="'Alpha 1.0'">
                         <a href="/">
                             <img src="../../assets/image/logo.png" class="logo" alt="logo">
-                            <span class="title">Pear Project</span>
+                            <span class="title">Gear Project</span>
                         </a>
                     </a-badge>
                 </div>
@@ -23,7 +23,7 @@
                       <a href="_self">条款</a>
                   </div>-->
                 <div class="copyright">
-                    Copyright &copy; 2019 Pear Project
+                    Copyright &copy; 2019 Spoom
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
             desc: {
                 type: [String],
                 default() {
-                    return '欢迎登录Pear Project项目管理系统';
+                    return '';
                 }
             }
         }
@@ -92,11 +92,6 @@
                         vertical-align: top;
                         margin-right: 12px;
                         border-style: none;
-                        transform: rotate(-25deg);
-                        -ms-transform: rotate(-25deg); /* IE 9 */
-                        -moz-transform: rotate(-25deg); /* Firefox */
-                        -webkit-transform: rotate(-25deg); /* Safari 和 Chrome */
-                        -o-transform: rotate(-25deg);
                     }
 
                     .title {
